@@ -1,7 +1,5 @@
 # Cyprus
 
----
-
 #### A Plug-and-play tool for creating intranets
 
 ---
