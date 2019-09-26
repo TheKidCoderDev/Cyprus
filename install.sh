@@ -1,6 +1,10 @@
 #!/bin/bash
 
 apt-get install dnsmasq -y
+apt-get install tmux -y
+apt-get install nodejs npm node-semver -y
+
+npm install -g http-server
 
 echo "What Top-Level Domain should we use: "
 read TLD
@@ -11,6 +15,5 @@ echo "$IP	admin.$TLD" > /etc/hosts
 
 echo "listen-address=127.0.0.1" >> /etc/dnsmasq.conf
 echo "listen-address=$IP" >> /etc/dnsmasq.conf
-sudo service network-manager restart
 sudo service dnsmasq stop
 sudo service dnsmasq start
