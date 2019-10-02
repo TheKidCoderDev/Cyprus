@@ -3,14 +3,14 @@
 from bottle import run, get, post, request, route, response, hook, static_file
 import os
 
-@post("/getDomains")
+@get("/getDomains")
 def getDomains():
 #    key = request.forms.get("key")
     domains=[]
     with open("/etc/hosts", "r") as f:
         lines = f.readlines()
     for line in lines:
-        domains.append(line.split("	"))
+        domains.append(line.split("	").reverse())
 
     return dict(domains)
 
