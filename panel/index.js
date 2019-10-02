@@ -2,7 +2,7 @@ function addDomain() {
   var ip = document.getElementById("ip").value;
   var domain = document.getElementById("domain").value;
   const http = new XMLHttpRequest();
-  const url = 'http://127.0.0.1:30/newDomain';
+  const url = 'http://admin.cyp:30/newDomain';
   var params = 'ip='+ip+'&domain='+domain;
   http.open('POST', url, true);
   console.log(params)
@@ -15,7 +15,7 @@ function addDomain() {
 function delDomain() {
   var domain = document.getElementById("remdomain").value;
   const http = new XMLHttpRequest();
-  const url = 'http://127.0.0.1:30/delDomain';
+  const url = 'http://admin.cyp:30/delDomain';
   var params = 'domain='+domain;
   http.open('POST', url, true);
   console.log(params)
@@ -27,7 +27,7 @@ http.send(params);
 
 function restart() {
   const http = new XMLHttpRequest();
-  const url = 'http://127.0.0.1:30/restart';
+  const url = 'http://admin.cyp:30/restart';
   http.open('get', url, true);
   console.log(params)
 
