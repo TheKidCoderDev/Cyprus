@@ -24,3 +24,13 @@ function delDomain() {
 http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 http.send(params);
 }
+
+function restart() {
+  const http = new XMLHttpRequest();
+  const url = 'http://127.0.0.1:30/restart';
+  http.open('get', url, true);
+  console.log(params)
+
+//Send the proper header information along with the request
+http.send();
+}
