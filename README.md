@@ -4,11 +4,17 @@
 
 ---
 
+# Setup
+
+1. Load the files onto your raspberry pi or other linux box (Not officially supported)
+2. Run `install.sh`
+3. Follow prompts
 
 
 
+# Notes
 
-## Goal
-
-Create a script that automatically installs and configures DNSMasq and OVPN, as well as hosts an admin management panel. These technologies should be combined into an IntraNet
-
+* Default username and password is `Admin` and `nimda`
+  * Currently no good way of changing this. That will be coming soon. For now just change it in `api.py`
+* The domain for the box will default to `admin.cyp`. **DO NOT CHANGE THIS**. A way to do so will be coming later
+* Make sure your DNS is set to the private IP of the box you are setting this up on.

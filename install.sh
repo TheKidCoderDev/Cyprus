@@ -2,7 +2,6 @@
 
 apt-get install dnsmasq -y
 apt-get install tmux -y
-apt-get install nodejs npm node-server -y
 
 npm install -g http-server
 
@@ -14,6 +13,8 @@ echo "listen-address=127.0.0.1" >> /etc/dnsmasq.conf
 echo "listen-address=$IP" >> /etc/dnsmasq.conf
 sudo service dnsmasq stop
 sudo service dnsmasq start
+
+sudo chmod a+x run.sh
 
 sudo chmod a+x api.py
 sudo ./api.py

@@ -6,7 +6,7 @@ import re
 import subprocess
 
 def is_authenticated_user(user, password):
-    if user == "miles" and password == "reah":
+    if user == "Admin" and password == "nimda":
         return True
 
 @route('/auth.js')
