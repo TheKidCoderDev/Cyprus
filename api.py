@@ -1,21 +1,36 @@
 #!/usr/bin/env python
 
-from bottle import run, get, post, request, route, response, hook, static_file
+from bottle import run, get, post, request, route, response, hook, static_file, auth_basic
 import os
 import re
 import subprocess
 
-@hook('after_request')
-def enable_cors():
-    """
-    You need to add some headers to each request.
-    Don't use the wildcard '*' for Access-Control-Allow-Origin in production.
-    """
-    response.headers['Access-Control-Allow-Origin'] = 'http://0.0.0.0:8080'
-    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
-    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+def is_authenticated_user(user, password):
+    if user == "miles" and password == "reah":
+        return True
 
-@get("/getDomains")
+@route('/auth.js')
+@auth_basic(is_authenticated_user)
+def index():
+    return static_file("auth.js", root='./panel/')
+
+@route('/')
+@auth_basic(is_authenticated_user)
+def index():
+    return static_file("index.html", root='./panel/')
+
+@route('/style.css')
+@auth_basic(is_authenticated_user)
+def index():
+    return static_file("style.css", root='./panel/')
+
+@route('/index.js')
+@auth_basic(is_authenticated_user)
+def index():
+    return static_file("index.js", root='./panel/')
+
+@get("/api/getDomains")
+@auth_basic(is_authenticated_user)
 def getDomains():
 #    key = request.forms.get("key")
     domains=[]
@@ -26,7 +41,8 @@ def getDomains():
 
     return dict(domains)
 
-@post("/newDomain")
+@post("/api/newDomain")
+@auth_basic(is_authenticated_user)
 def newDomain():
 #    key = request.forms.get("key")
     ip = request.forms.get("ip")
@@ -38,7 +54,8 @@ def newDomain():
         f.write("{}	{}\n".format(ip, domain))
     return {}
 
-@post("/delDomain")
+@post("/api/delDomain")
+@auth_basic(is_authenticated_user)
 def delDomain():
 #    key = request.forms.get("key")
     domain = request.forms.get('domain')
@@ -50,9 +67,10 @@ def delDomain():
                 f.write(line)
     return {}
 
-@get("/restart")
+@get("/api/restart")
+@auth_basic(is_authenticated_user)
 def restart():
     os.system("sudo service dnsmasq stop")
     os.system("sudo service dnsmasq start")
 
-run(reloader=True, debug=True, port=30, host='0.0.0.0')
+run(reloader=True, debug=True, port=80, host='0.0.0.0')
