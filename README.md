@@ -18,3 +18,33 @@
   * Currently no good way of changing this. That will be coming soon. For now just change it in `api.py`
 * The domain for the box will default to `admin.cyp`. **DO NOT CHANGE THIS**. A way to do so will be coming later
 * Make sure your DNS is set to the private IP of the box you are setting this up on.
+
+----
+
+- Goal
+
+- -  To create a Plug-and-play solution to creating Intranets
+
+- Technologies used
+
+- - Python
+
+  - - Bottle
+
+  - DNSMasq
+
+  - Bash
+
+  - HTML
+
+  - CSS
+
+  - - Tachyons
+
+  - JS
+
+- Technical challenges
+
+- -  CORS
+
+  - - Overcome by consolidating the hosting of the API and the hosting of the Frontend panel to one script
